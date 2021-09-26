@@ -1,12 +1,20 @@
-Docker image containing eclipse-mosquitto
-- http://mosquitto.org/
+Docker stack for MQTT purpose
+- Uses mosquitto as MQTT broker (see http://mosquitto.org/)
 
 ### Usage
 
-```
-docker-compose up -d
-docker-compose down
+* Start the stack
+  * From local git repository
 
+```console
+developer@host:~/.../stack-mqtt$ docker-compose up -d
+```
+
+* Stop the stack
+  * From local git repository
+
+```console
+developer@host:~/.../stack-mqtt$ docker-compose down
 ```
 
 ### Notes
