@@ -1,17 +1,16 @@
 version: "3.3"
 
 services:
-  mosquitto:
+  broker:
     image: eclipse-mosquitto:2.0.10
     ports:
       - 1883:1883
       - 1884:9001
     volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - mosquitto-data:/mosquitto/data
-      - mosquitto-logs:/mosquitto/logs
-    restart: always
+      - ./broker/config:/mosquitto/config
+      - broker-data:/mosquitto/data
+      - broker-logs:/mosquitto/logs
 
 volumes:
-  mosquitto-data:
-  mosquitto-logs:
+  broker-data:
+  broker-logs:
