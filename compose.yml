@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  broker:
+    image: docker.io/eclipse-mosquitto:2.0.10
+    ports:
+      - 1883:1883
+      - 1884:9001
+    volumes:
+      - ./broker/config:/mosquitto/config
+      - broker-data:/mosquitto/data
+      - broker-logs:/mosquitto/logs
+
+  db:
+    image: docker.io/influxdb:2.0.8
+    ports:
+      - 8086:8086
+    volumes:
+      - db-data:/var/lib/influxdb
+      
+  db_cli:
+    image: docker.io/influxdb:2.0.8
+    environment: 
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=myusername
+      - DOCKER_INFLUXDB_INIT_PASSWORD=mypassword
+      - DOCKER_INFLUXDB_INIT_ORG=myorg
+      - DOCKER_INFLUXDB_INIT_BUCKET=mybucket
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=mytoken
+    entrypoint: ["./entrypoint.sh"]
+    links:
+      - influxdb    
+    depends_on:
+      - influxdb
+
+volumes:
+  broker-data:
+  broker-logs:
+  db-data:
