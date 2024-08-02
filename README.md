@@ -6,15 +6,15 @@
 * Start the stack
   * From local git repository
 
-```console
-developer@host:~/.../stack-mqtt$ docker-compose up -d
+```sh
+developer@host:~/.../stack-mqtt$ podman-compose up -d
 ```
 
 * Stop the stack
   * From local git repository
 
-```console
-developer@host:~/.../stack-mqtt$ docker-compose down
+```sh
+developer@host:~/.../stack-mqtt$ podman-compose down
 ```
 
 ## Notes
